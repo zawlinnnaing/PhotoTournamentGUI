@@ -1,12 +1,13 @@
 from tkinter import *
+from data_store import Stage
 
 
 class Step_One:
     
     
 
-    def __init__(self,master):
-
+    def __init__(self, master, stage):
+        self.stage = stage
 # tracking variables
         self.t1=StringVar()
         self.t2=StringVar()
@@ -14,60 +15,62 @@ class Step_One:
         self.t4=StringVar()
         self.t5=StringVar()
         self.sum=StringVar()
-#base frames
+        self.initializeUI(master)
 
+
+    def initializeUI(self,master):
+    #base frames
         self.tframe= Frame(master)
-        self.tframe.pack()
+        self.tframe.grid(row=0, column=0, rowspan=1)
         self.mframe= Frame(master)
-        self.mframe.pack()
+        self.mframe.grid(row=1, column=0, rowspan=3)
         self.bframe= Frame(master)
-        self.bframe.pack()
-#top frame for step number ... etc 
-
-        self.title=Label(self.tframe,font=('ariel',15),text="Step - 1",relief='ridge')
+        self.bframe.grid(row=4, column=0, rowspan=1)
+    #top frame for step number ... etc 
+        self.title=Label(self.tframe,font=('ariel',15),text="Step "+str(self.stage),relief='ridge')
         self.title.grid(row=0,column=0,padx=120, pady=10)
         self.title=Label(self.tframe,font=('ariel',15),text="Mandalay Hill Contest",relief='ridge')
         self.title.grid(row=0,column=1,padx=120, pady=10)
         self.title=Label(self.tframe,font=('ariel',15),text="Photo Number- ",relief='ridge')
         self.title.grid(row=0,column=3,padx=120, pady=10)
-#mid frame for Labels to fit voting results
-
-        self.l1=Label(self.mframe,font=('ariel',80,'bold'),padx=180,pady=80,textvariable=self.t1,relief='solid')
+    #mid frame for Labels to fit voting results
+        self.l1=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t1,relief='solid')
         self.l1.bind("<Key>",self.key)
         self.l1.focus_set()
         self.l1.grid(row=0,column=0)
         
-        self.l2=Label(self.mframe,font=('ariel',80,'bold'),padx=180,pady=80,textvariable=self.t2,relief='solid')
+        self.l2=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t2,relief='solid')
         self.l2.bind("<Key>",self.key)
         self.l2.focus_set()
         self.l2.grid(row=0,column=1)
 
-        self.l3=Label(self.mframe,font=('ariel',80,'bold'),padx=180,pady=80,textvariable=self.t3,relief='solid')
+        self.l3=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t3,relief='solid')
         self.l3.bind("<Key>",self.key)
         self.l3.focus_set()
         self.l3.grid(row=0,column=2)
 
-        self.l4=Label(self.mframe,font=('ariel',80,'bold'),padx=180,pady=80,textvariable=self.t4,relief='solid')
+        self.l4=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t4,relief='solid')
         self.l4.bind("<Key>",self.key)
         self.l4.focus_set()
-        self.l4.grid(row=1,column=0)
+        self.l4.grid(row=0,column=3)
 
-        self.l5=Label(self.mframe,font=('ariel',80,'bold'),padx=180,pady=80,textvariable=self.t5,relief='solid')
+        self.l5=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t5,relief='solid')
         self.l5.bind("<Key>",self.key)
         self.l5.focus_set()
-        self.l5.grid(row=1,column=1)
+        self.l5.grid(row=0,column=4)
 
-        self.l6=Label(self.mframe,font=('ariel',80,'bold'),padx=180,pady=80,textvariable=self.sum,relief='solid',bg='yellow')
+        self.l6=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.sum,relief='solid',bg='yellow')
         self.l6.bind("<Key>",self.key)
         self.l6.focus_set() 
-        self.l6.grid(row=1,column=2)
+        self.l6.grid(row=1,column=4)
 
-#bottom frame for buttons      
+    #bottom frame for buttons      
         self.b1= Button(self.bframe,text="Pause")
         self.b1.grid(row=0,column=0,padx=120, pady=10)
         
-        self.b2= Button(self.bframe,text="Continue")
+        self.b2= Button(self.bframe,text="Continue", command = self.continue_callable)
         self.b2.grid(row=0,column=1,padx=120, pady=10)
+
 # key binding 
     def key(self,event):     
         if(event.char=='q' or event.char=='Q'):
@@ -99,13 +102,22 @@ class Step_One:
             else:
                 self.l6.config(bg="green")
         
-       
+    def continue_callable(self):
+        self.t1.set('')
+        self.t2.set('')
+        self.t3.set('')
+        self.t4.set('')
+        self.t5.set('')
+        self.sum.set('')
+        self.l6.config(bg='yellow')
+        # Stage().feed(self., )
+
 
 def main():
     root=Tk()
     root.geometry("1600x800+0+0")
     root.title("Photo Voting")
-    s1=Step_One(root)
+    s1 = Step_One(root)
     root.mainloop()
 
 if __name__ == '__main__':
