@@ -8,15 +8,15 @@ class StageChain:
 	def __init__(self):
 		self.current_stage = 1
 		self.stages = np.array([])
-		root = tk.Tk()
-		root.geometry("1600x800+0+0")
-		root.title("Photo Voting")
-		s1 = step.Step_One(root, self.current_stage)
-		root.mainloop()
+		# root = tk.Tk()
+		# root.geometry("1600x800+0+0")
+		# root.title("Photo Voting")
+		# s1 = step.Step_One(root, self.current_stage)
+		# root.mainloop()
 
 	def stage_proceed(self, data):
 		np.append(self.stages, data)
-
+ 
 
 class Stage:
 	def __init__(self):
@@ -25,11 +25,8 @@ class Stage:
 		self.data = pd.DataFrame(index=index, columns=columns)
 		self.review = np.array()
 
-	def feed(self, photo_id, value):
-		self.update(photo_id, value)
-
-	def update(self, idx, value):
-		self.data.loc[idx] = value
+	def feed_update(self, photo_id, value):
+		self.data.loc[photo_id] = value
 
 
 if __name__ == '__main__':
