@@ -142,7 +142,7 @@ def main():
     root=Tk()
     root.geometry("1600x800+0+0")
     root.title("Photo Voting")
-    s1 = Step_One(root,1,50,5)
+    s1 = Step_One(root,1,50,3)
     root.mainloop()
 
 if __name__ == '__main__':
