@@ -25,7 +25,7 @@ class Steps(Frame):
         printLogo = PhotoImage(file='print.png').subsample(30,30)
         printButton = ttk.Button(topFrame,text="Print", image=printLogo, compound=LEFT,command=self.printFunc)
         printButton.pack(side=LEFT, padx=10)
-
+    
         banLogo = PhotoImage(file='ban.png').subsample(15,15)
         banButton = ttk.Button(topFrame,text="Ban a photo", image=banLogo, compound=LEFT, command=self.banPhotoFunc)
         banButton.pack(side=LEFT, padx=10)
