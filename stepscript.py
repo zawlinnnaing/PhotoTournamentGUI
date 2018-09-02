@@ -3,8 +3,9 @@ from tkinter import ttk
 
 root=Tk()
 root.title("Results for voted photos")
-root.geometry('1600x800')
+root.geometry('1600x800+0+0')
 
+class Steps:
 # Initializing window
 topFrame = Frame(root)
 topFrame.pack(fill=X,pady=30)
