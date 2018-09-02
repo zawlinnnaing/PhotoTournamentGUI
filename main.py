@@ -1,5 +1,6 @@
 import tkinter as tk
 import step_one as step
+import entry_view as entry
 
 class main():
 	def __init__(self):
@@ -13,8 +14,10 @@ class main():
 		root = tk.Tk()
 		root.attributes('-fullscreen',True)
 		root.title("Photo Voting")
-		s1 = step.Step_One(root, self.current_stage, self.no_of_photo, self.no_of_judge)
+		entry.EntryView(root)
+		# s1 = step.Step_One(root, self.current_stage, self.no_of_photo, self.no_of_judge)
 		root.mainloop()
+
 
 
 if __name__ == '__main__':
