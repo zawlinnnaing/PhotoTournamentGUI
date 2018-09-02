@@ -1,4 +1,4 @@
-import tinker as tk
+import tkinter as tk
 import step_one as step
 
 class main():
@@ -11,7 +11,7 @@ class main():
 
 	def initialize_all_instances(self):
 		root = tk.Tk()
-		root.geometry("1600x800+0+0")
+		root.attributes('-fullscreen',True)
 		root.title("Photo Voting")
 		s1 = step.Step_One(root, self.current_stage, self.no_of_photo, self.no_of_judge)
 		root.mainloop()

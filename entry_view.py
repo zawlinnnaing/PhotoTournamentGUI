@@ -26,15 +26,23 @@ class EntryView:
 
         logoFrame.pack(side=LEFT,fill=BOTH, expand=True)
 
-        titleLable = Label(frame1,text='#title', font=('Arial', 24,'bold'), pady=20)
+        titleLable = Label(frame1,text='The Upper Myanmar Photographics Society', font=('Arial', 24,'bold'), pady=20)
         titleLable.pack(fill=BOTH, expand=True)
 
         # Generating buttons at side frame
-        for i in range (4):
-            ttk.Button(sideFrame,text='Button no :'+ str(i)).pack(padx=40, pady=20, anchor='s')
+        ttk.Button(sideFrame,text='Create a competition').pack(padx=40, pady=20, anchor='s')
+        ttk.Button(sideFrame,text='History').pack(padx=40, pady=20, anchor='s')
+        ttk.Button(sideFrame,text='Setting').pack(padx=40, pady=20, anchor='s')
+        ttk.Button(sideFrame,text='About us').pack(padx=40, pady=20, anchor='s')
+
+
+        logo = PhotoImage(file="./logo.png")
+        logoLabel = Label(logoFrame,image=logo)
+        logoLabel.pack()
 
 root = Tk()
 root.title('Entry View')
-root.geometry('1600x800+0+0')
+# root.geometry('1600x800+0+0')
+root.attributes('-fullscreen',True)
 entryView = EntryView(root)
 root.mainloop()
