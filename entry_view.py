@@ -49,7 +49,7 @@ class EntryView:
 
 
         # logo = PhotoImage(file="logo.gif")
-        logo =PhotoImage(file="logo.png")
+        logo =PhotoImage(file="logo_1.png")
         logoLabel = Label(logoFrame,image=logo)
         logoLabel.image=logo
         logoLabel.pack()
