@@ -12,14 +12,6 @@ class Step_One():
         for i in range(no_of_judge):
             self.vote_holder_vars.append(StringVar())
 
-
-        ## tracking variables
-
-        # self.t1=StringVar()
-        # self.t2=StringVar()
-        # self.t3=StringVar()
-        # self.t4=StringVar()
-        # self.t5=StringVar()
         self.total=StringVar()
         self.initializeUI(master)
 

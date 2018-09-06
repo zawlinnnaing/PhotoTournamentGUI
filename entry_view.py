@@ -39,10 +39,3 @@ class EntryView:
         logo = PhotoImage(file="./logo.png")
         logoLabel = Label(logoFrame,image=logo)
         logoLabel.pack()
-
-# root = Tk()
-# root.title('Entry View')
-# # root.geometry('1600x800+0+0')
-# root.attributes('-fullscreen',True)
-# entryView = EntryView(root)
-# root.mainloop()

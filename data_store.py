@@ -8,11 +8,6 @@ class StageChain:
 	def __init__(self):
 		self.current_stage = 1
 		self.stages = np.array([])
-		# root = tk.Tk()
-		# root.geometry("1600x800+0+0")
-		# root.title("Photo Voting")
-		# s1 = step.Step_One(root, self.current_stage)
-		# root.mainloop()
 
 	def stage_proceed(self, data):
 		np.append(self.stages, data)
