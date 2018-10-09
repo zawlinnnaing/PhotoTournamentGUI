@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 
-class Steps(Frame):x
+class Steps(Frame):
 
     def __init__(self,master=NONE):
         # Frame.__init__(self,master)
