@@ -77,8 +77,3 @@ class Steps(Frame):
             print (' '+ x.get())
             x.set(NONE)
 
-root =Tk()
-root.title('Result for voted photos')
-root.geometry('1600x800+0+0')
-app = Steps(root)
-root.mainloop()
