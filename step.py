@@ -77,9 +77,12 @@ class Steps(Frame):
             print (' '+ x.get())
             x.set(NONE)
 
+<<<<<<< HEAD
 root =Tk()
 root.title('Result for voted photos')
 # root.geometry('1600x800+0+0')
 root.attributes('-fullscreen',True)
 app = Steps(root)
 root.mainloop()
+=======
+>>>>>>> 4422760a34ab71a0b6ae07a7494c39850ff19619
