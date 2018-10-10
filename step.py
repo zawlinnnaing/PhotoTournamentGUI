@@ -1,15 +1,22 @@
 from tkinter import *
 from tkinter import ttk
+import data_store
+import utilities
+import numpy as np
 
-class Steps(Frame):
+class Steps():
 
-    def __init__(self,master=NONE):
+    def __init__(self,dataFrame,current_photo_indices):
         # Frame.__init__(self,master)
+        utilities.clear_screen(utilities.data_global_scope['rootGlobalMaster'])
         self.banPhotoList = list()
         self.checkButtonList = list()
         self.creatingStringVarList(10)
-        self.master = master
-        self.init_window(master)
+        # self.master = master
+        self.current_photo_indices=current_photo_indices
+        self.master = utilities.data_global_scope['rootGlobalMaster']
+        self.dataFrame=dataFrame
+        self.init_window(self.master)
 
     def init_window(self,master):
         # Initializing window
@@ -40,23 +47,18 @@ class Steps(Frame):
         gradedMark.pack(side=LEFT, padx=10)
 
         # Adding widgets to bottom frame
-        columns = 6
+        columns = len(self.dataFrame.columns)
         # Creating header for table
         for i in range(columns):
-            if(i == 5):
-                    ttk.Label(bottomFrame,text='Total', anchor='center', borderwidth=3, relief='solid').grid(row = 0, column=i,ipadx=40,ipady=20)
-                    break
-            ttk.Label(bottomFrame,text = 'Judge#'+ str(i+1), anchor='center', borderwidth=3, relief='solid').grid(row = 0, column=i,ipadx=40,ipady=20)
+            ttk.Label(bottomFrame,text=self.dataFrame.columns[i], anchor='center', borderwidth=3, relief='solid').grid(row = 0, column=i,ipadx=40,ipady=20)
 
-        ttk.Label(bottomFrame,text='Check for banning or reviewing photos').grid(row=0,column=columns+1,ipadx=40,ipady=20)
-
+        ttk.Label(bottomFrame,text='Check for banning or reviewing photos').grid(row=0,column=columns+1,ipadx=20,ipady=20)
         # Creating table cells
-        rows = 10
-        for i in range(1,rows):
-            ttk.Checkbutton(bottomFrame,onvalue=str(i),offvalue=NONE,variable=self.checkButtonList[i]).grid(row=i, column=columns+1)
-            for j in range(columns):
-                    ttk.Label(bottomFrame,text = str(j+i), anchor='center', borderwidth=3, relief='solid').grid(row = i, column=j,sticky = 'nsew', ipady=20)
-                    # ttk.Checkbutton(bottomFrame,)
+        rows=len(self.current_photo_indices)
+        for i in range(rows):
+             ttk.Checkbutton(bottomFrame,onvalue=str(self.current_photo_indices[i]),offvalue=NONE,variable=self.checkButtonList[i]).grid(row=i+1, column=columns+1)
+             for j in range(columns):
+                     ttk.Label(bottomFrame,text = str(self.dataFrame.iloc[i,j]), anchor='center', borderwidth=3, relief='solid').grid(row=i+1, column=j,sticky = 'nsew', ipady=20)
 
     # Event Handling sectionx
     def printFunc(self):
@@ -77,3 +79,4 @@ class Steps(Frame):
             print (' '+ x.get())
             x.set(NONE)
 
+# Testing purpose

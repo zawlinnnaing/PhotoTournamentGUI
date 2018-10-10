@@ -4,7 +4,7 @@ import tkinter as tk
 import entry_view
 import utilities
 from individual_step import individual_step 
-
+from step import Steps
 class StageChain:
 	def __init__(self):
 		self.current_stage = 1
@@ -37,10 +37,17 @@ class Stage:
 		self.no_of_judges = no_of_judges
 		self.current_photo_count = current_photo_count
 		self.data = self.create_dataframe()
+
+		# testing dataFrame
+		self.data.iloc[1,3]=5
+		print(self.data)
+
 		# self.review = np.array()
 		self.current_photos_indices = np.array(self.data.index.tolist())
 		print('stage initialized')
-		individual_step( self, 1, self.current_photos_indices)
+		# individual_step( self, 1, self.current_photos_indices)
+		Steps(self.data,self.current_photos_indices)
+		
 
 	def feed_update(self, photo_id, value):
 		self.data.loc[photo_id] = value
@@ -50,5 +57,7 @@ class Stage:
 		columns = list()
 		for i in range(self.no_of_judges):
 			columns.append('judge'+str(i+1))
-		data = pd.DataFrame(index=index, columns=columns)	
+		columns.append('total')
+		data = pd.DataFrame(index=index, columns=columns)
+		print(data)
 		return data

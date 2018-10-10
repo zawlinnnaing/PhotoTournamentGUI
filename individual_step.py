@@ -108,7 +108,7 @@ class individual_step():
                 
         # if(self.t1.get()!="" and self.t2.get()!="" and self.t3.get()!="" and self.t4.get()!="" and self.t5.get()!=""):
         #     self.sum.set(eval(self.t1.get()+"+"+self.t2.get()+"+"+self.t3.get()+"+"+self.t4.get()+"+"+self.t5.get())) 
-
+        # Calculating sum
         sum = 0
         for i in self.vote_holder_vars:
             sum += int(i.get())
