@@ -1,6 +1,7 @@
 from tkinter import *
 import entry_view
 import utilities 
+import step
 
 class individual_step():
     def __init__(self, stage_instance, stage_no, photo_indices):
@@ -46,30 +47,6 @@ class individual_step():
             self.judge_vote_holders[i].bind("<Key>", self.key)
             self.judge_vote_holders[i].focus_set
             self.judge_vote_holders[i].grid(row = 0, column = i)
-            # self.l1=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t1,relief='solid')
-            # self.l1.bind("<Key>",self.key)
-            # self.l1.focus_set()
-            # self.l1.grid(row=0,column=0)
-            
-            # self.l2=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t2,relief='solid')
-            # self.l2.bind("<Key>",self.key)
-            # self.l2.focus_set()
-            # self.l2.grid(row=0,column=1)
-
-            # self.l3=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t3,relief='solid')
-            # self.l3.bind("<Key>",self.key)
-            # self.l3.focus_set()
-            # self.l3.grid(row=0,column=2)
-
-            # self.l4=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t4,relief='solid')
-            # self.l4.bind("<Key>",self.key)
-            # self.l4.focus_set()
-            # self.l4.grid(row=0,column=3)
-
-            # self.l5=Label(self.mframe,font=('ariel',80,'bold'),padx=50,pady=80,textvariable=self.t5,relief='solid')
-            # self.l5.bind("<Key>",self.key)
-            # self.l5.focus_set()
-            # self.l5.grid(row=0,column=4)
 
             self.l6 = Label(self.mframe, font = ('ariel',80,'bold'), padx = 50, pady = 80, textvariable = self.total, relief = 'solid', bg = 'yellow')
             self.l6.bind("<Key>", self.key)
@@ -119,20 +96,19 @@ class individual_step():
             self.l6.config(bg = "green")
         
     def continue_callable(self):
-        for i in self.vote_holder_vars:
-            i.set('')
-        self.total.set('')
-        self.l6.config(bg = 'yellow')
         value = list()
         for i in self.vote_holder_vars:
-            value.append(i.get())
-        value.append(self.total.get())
-        try:
-            self.photo_indices[self.transversed_photo]
-        except IndexError:
-            print('EZ')
-            pass
+            value.append(int(i.get()))
+            i.set('')
+        value.append(int(self.total.get()))
+        self.total.set('')
+        self.l6.config(bg = 'yellow')  
         self.stage_instance.feed_update( self.photo_indices[self.transversed_photo], value)
+        try:
+            self.photo_indices[self.transversed_photo+1]
+        except Exception:
+            step.Steps(self.stage_instance.getDataFrame(),self.photo_indices)
+        pass
         self.transversed_photo = self.transversed_photo+1
 
 

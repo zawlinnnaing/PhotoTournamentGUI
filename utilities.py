@@ -1,8 +1,11 @@
 def clear_screen(ui_root):
 	print(ui_root)
-	children_list = ui_root.pack_slaves()
-	for i in children_list:
+	pack_children = ui_root.pack_slaves()
+	grid_children = ui_root.grid_slaves()
+	for i in pack_children:
 		i.pack_forget()
+	for i in grid_children:
+		i.grid_remove()
 
 def initialize_gobals():
 	global data_global_scope
