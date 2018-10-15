@@ -39,21 +39,21 @@ class Stage:
 		self.data = self.create_dataframe()
 
 		# testing dataFrame
-		self.data.iloc[1,3]=5
-		print(self.data)
+		# self.data.iloc[1,3]=5
+		# print(self.data)
 
 		# self.review = np.array()
 		self.current_photos_indices = np.array(self.data.index.tolist())
 		print('stage initialized')
-		# individual_step( self, 1, self.current_photos_indices)
-		Steps(self.data,self.current_photos_indices)
+		individual_step( self, 1, self.current_photos_indices)
+		#Steps(self.data,self.current_photos_indices)
 		
 
 	def feed_update(self, photo_id, value):
 		self.data.loc[photo_id] = value
 	
 	def create_dataframe(self):
-		index = np.arange(1, self.current_photo_count)
+		index = np.arange(0, self.current_photo_count)
 		columns = list()
 		for i in range(self.no_of_judges):
 			columns.append('judge'+str(i+1))
@@ -61,3 +61,6 @@ class Stage:
 		data = pd.DataFrame(index=index, columns=columns)
 		print(data)
 		return data
+
+	def getDataFrame(self):
+		return self.data
