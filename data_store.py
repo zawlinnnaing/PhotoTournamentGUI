@@ -5,6 +5,7 @@ import entry_view
 import utilities
 from individual_step import individual_step 
 from step import Steps
+
 class StageChain:
 	def __init__(self):
 		self.current_stage = 1
