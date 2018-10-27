@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-import data_store
+import data_store as data_store
 import utilities
 import numpy as np
 import individual_step as individual_step
@@ -11,7 +11,6 @@ class Steps():
     def __init__(self, dataFrame, current_photo_indices):
         # Frame.__init__(self,master)
         utilities.clear_screen(utilities.data_global_scope['rootGlobalMaster'])
-        self.banPhotoList = list()
         self.checkButtonList = list()
         # self.master = master
         self.current_photo_indices = current_photo_indices
@@ -75,9 +74,12 @@ class Steps():
         pass
 
     def banPhotoFunc(self):
+        banPhotoList = list()
         for x in self.checkButtonList:
-            print(' ' + x.get())
-            x.set(NONE)
+            if x is not '' or not NONE:
+                banPhotoList.append(x.get())
+        stage = data_store.Stage
+        stage.banPhotoDataframe(stage,banPhotoList)
 
     def creatingStringVarList(self, noOfPhotos):
         for x in range(noOfPhotos):

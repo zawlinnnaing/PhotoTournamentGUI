@@ -24,7 +24,7 @@ class StageChain:
 			threshold = 23 
 			vote_protocol = '357'
 		elif self.current_stage == 3: 
-			threshold = 25; 
+			threshold = 25
 			vote_protocol = '357'
 		elif self.current_stage == 4:
 			threshold = 27
@@ -65,3 +65,18 @@ class Stage:
 
 	def getDataFrame(self):
 		return self.data
+	
+	# Creating dataframe for banned photos
+	def banPhotoDataframe(self,banPhotoList):
+		if banPhotoList is not None :
+			columns = list()
+			for i in range(self.no_of_judges):
+				columns.append('judge'+str(i+1))
+			columns.append('total')
+			banPhotoData = pd.DataFrame(index=banPhotoList,columns=columns)
+			for x in banPhotoList:
+				banPhotoData.loc[x] = self.data.loc[x]
+			print(banPhotoData)
+		else:
+			print("You didn't Check any photos")
+		
