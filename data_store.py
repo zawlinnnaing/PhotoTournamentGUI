@@ -46,7 +46,7 @@ class Stage:
 		# self.review = np.array()
 		self.current_photos_indices = np.array(self.data.index.tolist())
 		print('stage initialized')
-		# individual_step( self, 1, self.current_photos_indices)
+		individual_step( self, 1, self.current_photos_indices)
 		Steps(self.data,self.current_photos_indices)
 		
 
